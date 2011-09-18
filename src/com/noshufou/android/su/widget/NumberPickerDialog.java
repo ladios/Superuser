@@ -32,7 +32,6 @@ import com.noshufou.android.su.R;
  * A dialog that prompts the user for the message deletion limits.
  */
 public class NumberPickerDialog extends AlertDialog implements OnClickListener {
-    private int mInitialNumber;
 
     private static final String NUMBER = "number";
 
@@ -81,7 +80,6 @@ public class NumberPickerDialog extends AlertDialog implements OnClickListener {
             int title) {
         super(context, theme);
         mCallback = callBack;
-        mInitialNumber = number;
 
         setTitle(title);
 
