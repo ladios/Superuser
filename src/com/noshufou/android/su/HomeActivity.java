@@ -13,11 +13,12 @@ import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.view.MenuCompat;
 import android.support.v4.view.ViewPager;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.AbsListView;
 import android.widget.ImageView;
-import android.widget.ListView;
 
 import com.noshufou.android.su.provider.PermissionsProvider.Logs;
 import com.noshufou.android.su.util.Util;
@@ -26,28 +27,28 @@ import com.noshufou.android.su.widget.PagerHeader;
 
 public class HomeActivity extends FragmentActivity {
 //    private static final String TAG = "Su.HomeActivity";
-    
+
     private static final int MENU_ELITE = 0;
     private static final int MENU_CLEAR_LOG = 1;
     private static final int MENU_PREFERENCES = 2;
-    
+
     private static final String STATE_SHOW_DETAILS = "show_details";
-    
+
     private boolean mDualPane = false;
-    
+
     private ViewPager mPager;
     private TransitionDrawable mTitleLogo;
-    
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        
+
         setContentView(R.layout.activity_home);
-        
+
         if (findViewById(R.id.fragment_container) != null) {
             mDualPane = true;
             ((AppListFragment)getSupportFragmentManager().findFragmentById(R.id.app_list))
-                    .getListView().setChoiceMode(ListView.CHOICE_MODE_SINGLE);
+                    .getListView().setChoiceMode(AbsListView.CHOICE_MODE_SINGLE);
             if (savedInstanceState == null) {
                 showLog();
             }
@@ -60,14 +61,15 @@ public class HomeActivity extends FragmentActivity {
             pagerAdapter.addPage(AppListFragment.class, R.string.page_label_apps);
             pagerAdapter.addPage(LogFragment.class, R.string.page_label_log);
         }
-        
+
         mTitleLogo = 
                 (TransitionDrawable) ((ImageView)findViewById(android.R.id.home)).getDrawable();
         new EliteCheck().execute();
 
         ChangeLog cl = new ChangeLog(this);
-        if (cl.firstRun())
+        if (cl.firstRun()) {
             cl.getLogDialog().show();
+        }
     }
 
     @Override
@@ -76,30 +78,18 @@ public class HomeActivity extends FragmentActivity {
             MenuItem item = menu.add(Menu.NONE, MENU_ELITE,
                     MENU_ELITE, R.string.menu_extras);
             item.setIcon(R.drawable.ic_menu_star);
-            try {
-                item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-            } catch (NoSuchMethodError e) {
-                // Don't care, this just means we're not on Honeycomb
-            }
+            MenuCompat.setShowAsAction(item, MenuItem.SHOW_AS_ACTION_IF_ROOM);
         }
 
         MenuItem item = menu.add(Menu.NONE, MENU_CLEAR_LOG,
                 MENU_CLEAR_LOG, R.string.menu_clear_log);
         item.setIcon(R.drawable.ic_menu_clear_log);
-        try {
-            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        } catch (NoSuchMethodError e) {
-            // Don't care, this just means we're not on Honeycomb
-        }
+        MenuCompat.setShowAsAction(item, MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
         item = menu.add(Menu.NONE, MENU_PREFERENCES,
                 MENU_PREFERENCES, R.string.menu_preferences);
         item.setIcon(R.drawable.ic_menu_preferences);
-        try {
-            item.setShowAsAction(MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        } catch (NoSuchMethodError e) {
-            // Don't care, this just means we're not on Honeycomb
-        }
+        MenuCompat.setShowAsAction(item, MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
         return true;
     }
@@ -122,7 +112,7 @@ public class HomeActivity extends FragmentActivity {
         }
         return super.onOptionsItemSelected(item);
     }
-    
+
     public void showDetails(long id) {
         if (mDualPane) {
             Fragment fragment = getSupportFragmentManager()
@@ -146,14 +136,14 @@ public class HomeActivity extends FragmentActivity {
             startActivity(intent);
         }
     }
-    
+
     public void closeDetails() {
         if (mDualPane) {
             getSupportFragmentManager()
                     .popBackStack(STATE_SHOW_DETAILS, FragmentManager.POP_BACK_STACK_INCLUSIVE);
         }
     }
-    
+
     public void showLog() {
         if (mDualPane) {
             Fragment logFragment = Fragment.instantiate(this, LogFragment.class.getName());
@@ -166,16 +156,16 @@ public class HomeActivity extends FragmentActivity {
 
     public static class PagerAdapter extends FragmentPagerAdapter
             implements ViewPager.OnPageChangeListener, PagerHeader.OnHeaderClickListener {
-        
+
         private final Context mContext;
         private final ViewPager mPager;
         private final PagerHeader mHeader;
         private final ArrayList<PageInfo> mPages = new ArrayList<PageInfo>();
-        
+
         static final class PageInfo {
             private final Class<?> clss;
             private final Bundle args;
-            
+
             PageInfo(Class<?> _clss, Bundle _args) {
                 clss = _clss;
                 args = _args;
@@ -192,19 +182,19 @@ public class HomeActivity extends FragmentActivity {
             mPager.setAdapter(this);
             mPager.setOnPageChangeListener(this);
         }
-        
+
         public void addPage(Class<?> clss, int res) {
             addPage(clss, null, res);
         }
-        
+
         public void addPage(Class<?> clss, String title) {
             addPage(clss, null, title);
         }
-        
+
         public void addPage(Class<?> clss, Bundle args, int res) {
             addPage(clss, null, mContext.getResources().getString(res));
         }
-        
+
         public void addPage(Class<?> clss, Bundle args, String title) {
             PageInfo info = new PageInfo(clss, args);
             mPages.add(info);
@@ -216,7 +206,7 @@ public class HomeActivity extends FragmentActivity {
         public int getCount() {
             return mPages.size();
         }
-        
+
         @Override
         public Fragment getItem(int position) {
             PageInfo info = mPages.get(position);
@@ -239,7 +229,7 @@ public class HomeActivity extends FragmentActivity {
 
         @Override
         public void onHeaderClicked(int position) {
-            
+
         }
 
         @Override
@@ -248,14 +238,14 @@ public class HomeActivity extends FragmentActivity {
         }
 
     }
-    
+
     private class EliteCheck extends AsyncTask<Void, Void, Boolean> {
-        
+
         @Override
         protected Boolean doInBackground(Void... params) {
             return Util.elitePresent(HomeActivity.this, false, 0);
         }
-        
+
         @Override
         protected void onPostExecute(Boolean result) {
             if (result) {
