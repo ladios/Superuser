@@ -65,8 +65,6 @@ public class AppListItem extends ViewGroup implements Checkable {
     private int mLine1Height;
     private int mLine2Height;
 
-    private OnClickListener mStatusButtonClickListener;
-
     public AppListItem(Context context, AttributeSet attrs) {
         super(context, attrs);
         mContext = context;
@@ -88,13 +86,6 @@ public class AppListItem extends ViewGroup implements Checkable {
                 resources.getDimensionPixelSize(R.dimen.list_item_gap_between_image_and_text);
         mHeaderPaddingLeft =
                 resources.getDimensionPixelSize(R.dimen.list_item_header_padding_left);
-    }
-
-    /**
-     * Install status button click listener
-     */
-    public void setOnStatusButtonClickListener(OnClickListener statusButtonClickListener) {
-        mStatusButtonClickListener = statusButtonClickListener;
     }
 
     @Override
@@ -120,8 +111,6 @@ public class AppListItem extends ViewGroup implements Checkable {
         }
 
         height = Math.max(height, mPreferredHeight);
-
-//        mIconViewSize = height - mPaddingTop - mPaddingBottom;
 
         if (mHeaderVisible) {
             ensureHeaderBackground();
@@ -357,8 +346,6 @@ public class AppListItem extends ViewGroup implements Checkable {
             if (mStatusButton == null) {
                 mStatusButton = new ImageView(mContext);
                 mStatusButton.setId(id);
-//                mStatusButton.setOnClickListener(mStatusButtonClickListener);
-//                mStatusButton.setPadding(mStatusButtonPadding, 0, mStatusButtonPadding, 0);
                 mStatusButton.setScaleType(ScaleType.CENTER);
                 addView(mStatusButton);
             }
