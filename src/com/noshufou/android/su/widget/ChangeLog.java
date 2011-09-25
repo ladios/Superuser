@@ -29,7 +29,7 @@ import com.noshufou.android.su.R;
 public class ChangeLog {
     
     private final Context context;
-    private String lastVersion, thisVersion;
+    private int lastVersion, thisVersion;
 
     // this is the key for storing the version name in SharedPreferences
     private static final String VERSION_KEY = "pref_version_key";
@@ -47,13 +47,18 @@ public class ChangeLog {
                 .getDefaultSharedPreferences(context);
 
         // get version numbers
-        this.lastVersion = sp.getString(VERSION_KEY, "");
+        try {
+            this.lastVersion = sp.getInt(VERSION_KEY, 0);
+        } catch (ClassCastException e) {
+            // Coming from the old version of tracking by version name
+            this.lastVersion = 0;
+        }
         Log.d(TAG, "lastVersion: " + lastVersion);
         try {
             this.thisVersion = context.getPackageManager().getPackageInfo(
-                    context.getPackageName(), 0).versionName;
+                    context.getPackageName(), 0).versionCode;
         } catch (NameNotFoundException e) {
-            this.thisVersion = "?";
+            this.thisVersion = 0;
             Log.e(TAG, "could not get version name from manifest!");
             e.printStackTrace();
         }
@@ -61,7 +66,7 @@ public class ChangeLog {
         
         // save new version number to preferences
         SharedPreferences.Editor editor = sp.edit();
-        editor.putString(VERSION_KEY, this.thisVersion);
+        editor.putInt(VERSION_KEY, this.thisVersion);
         editor.commit();
     }
     
@@ -73,7 +78,7 @@ public class ChangeLog {
      *          second time ChangeLog is instantiated).
      * @see AndroidManifest.xml#android:versionName
      */
-    public String getLastVersion() {
+    public int getLastVersion() {
         return  this.lastVersion;
     }
 
@@ -81,7 +86,7 @@ public class ChangeLog {
      * manually set the last version name - for testing purposes only
      * @param lastVersion
      */
-    void setLastVersion(String lastVersion) {
+    void setLastVersion(int lastVersion) {
         this.lastVersion = lastVersion;
     }
     
@@ -89,7 +94,7 @@ public class ChangeLog {
      * @return  The version name of this app as described in the manifest.
      * @see AndroidManifest.xml#android:versionName
      */
-    public String getThisVersion() {
+    public int getThisVersion() {
         return  this.thisVersion;
     }
 
@@ -98,7 +103,7 @@ public class ChangeLog {
      *          first time
      */
     public boolean firstRun() {
-        return  ! this.lastVersion.equals(this.thisVersion);
+        return  this.lastVersion < this.thisVersion;
     }
 
     /**
@@ -172,7 +177,7 @@ public class ChangeLog {
     };
     private Listmode listMode = Listmode.NONE;
     private StringBuffer sb = null;
-    private static final String EOCL = "END_OF_CHANGE_LOG";
+    private static final int EOCL = -1;
 
     private String getLog(boolean full) {
         // read changelog.txt file
@@ -189,12 +194,12 @@ public class ChangeLog {
                 if (line.startsWith("$")) {
                     // begin of a version section
                     this.closeList();
-                    String version = line.substring(1).trim();
+                    int version = Integer.parseInt(line.substring(1).trim());
                     // stop output?
                     if (! full) {
-                        if (this.lastVersion.equals(version))
+                        if (version < this.lastVersion + 1)
                             advanceToEOVS = true;
-                        else if (version.equals(EOCL))
+                        else if (version == EOCL)
                             advanceToEOVS = false;
                      }
                 } else if (! advanceToEOVS) {

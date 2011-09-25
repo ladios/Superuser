@@ -24,7 +24,7 @@
   </head>
 
   <body>
-$ 3.0-beta4
+$ 34
   % 3.0-beta4
   _ 2011-08-21
     * New layout for home activity with app list and log in the same place
@@ -33,7 +33,7 @@ $ 3.0-beta4
     * Updated translations from crowdin.net, see <a href="http://androidsu.com/3-0-beta/translators">the translators page</a> for details
     * Change the Changelog dialog so that Elite only features are more obvious
   
-$ 3.0-beta3
+$ 33
   % 3.0 beta3
   _ 2011-08-02
     * <span class="elite">*</span>New PIN activity for setting/changing/checking PIN
@@ -45,7 +45,7 @@ $ 3.0-beta3
     * <span class="elite">*</span>Use the PIN activity for setting the code for Ghost mode
     * Changelog dialog thanks to <a href="https://code.google.com/p/android-change-log/">Karsten Priegnitz</a>
     
-$ 3.0-beta2
+$ 32
   % 3.0 beta2
   _ 2011-06-26
     * Fixed Honeycomb prompt
@@ -57,11 +57,11 @@ $ 3.0-beta2
     * Fixed bug causing some apps to not display right
     * Fixed bug causing some apps to prompt again even if they're already remembered
     
-$ 3.0-beta1
+$ 31
   % 3.0 beta1
   _ 2011-06-19
     * Initial release of Superuser 3 Beta
     * Massive overhaul to entire app from version 2x
-$ END_OF_CHANGE_LOG
+$ -1
   </body>
 </html>
