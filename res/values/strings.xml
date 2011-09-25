@@ -140,8 +140,13 @@
     <string name="pref_write_allow_tag_title">Write new allow tag</string>
     <string name="pref_write_allow_tag_summary">Write a new tag to be used to allow</string>
     <string name="pref_category_backup_restore_title">Backup/Restore</string>
-    <string name="pref_backup_title">Backup apps</string>
-    <string name="pref_restore_title">Restore apps</string>
+    <string name="pref_backup_title">Backup apps/preferences</string>
+    <string name="backup_complete">Backup written to sdcard</string>
+    <string name="pref_restore_title">Restore apps/preferences</string>
+    <plurals name="restore_complete">
+        <item quantity="one">One app and preferences restored</item>
+        <item quantity="other">%1$d apps and preferences restored</item>
+    </plurals>
     <string name="pref_category_info_title">Superuser information</string>
     <string name="pref_version_title">Superuser v%1$s (%2$d)</string>
     <string name="pref_version_summary">Database version %s</string>
