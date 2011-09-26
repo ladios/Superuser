@@ -107,8 +107,8 @@ Haamu-tila piilottaa Pääkäyttäjä-kuvakkeen kotinäkymästä. Kuvake on piil
   <string name="pref_toast_location_title">Ponnahdusviestin sijainti</string>
   <string name="pref_toast_location_summary">Mihin ilmoitus näytetään näytöllä</string>
   <string name="pref_category_nfc_title">NFC</string>
-  <string name="pref_use_allow_tag_title">Use NFC tag to allow</string>
-  <string name="pref_use_allow_tag_summary_on">Enter PIN or scan tag to allow</string>
+  <string name="pref_use_allow_tag_title">Käytä NFC-tunnistetta sallitaksesi</string>
+  <string name="pref_use_allow_tag_summary_on">Syötä PIN-koodi tai skannaa tunniste sallitaksesi</string>
   <string name="pref_use_allow_tag_summary_off">Kirjoita PIN-koodi vain, jos haluat sallia</string>
   <string name="pref_write_allow_tag_title">Kirjoita uusi sallimisen tunniste</string>
   <string name="pref_write_allow_tag_summary">Kirjoita uusi tunniste, jotak käytetään sallimiseen</string>
@@ -163,7 +163,7 @@ Haamu-tila piilottaa Pääkäyttäjä-kuvakkeen kotinäkymästä. Kuvake on piil
   <string name="pin_confirm_pin">Vahvista PIN-koodi</string>
   <string name="pin_mismatch">PIN-koodin eivät täsmää, yritä uudelleen</string>
   <string name="pin_enter_secret_code">Kirjoita salakoodi</string>
-  <string name="nfc_write_tag">Scan tag to write</string>
+  <string name="nfc_write_tag">Skannaa tunniste kirjoittaaksesi</string>
   <string name="malicious_apps_title">Varoitus</string>
   <string name="malicious_apps_message2">Sovellukset ovat merkitty haittaohjelmiksi, koska ne sisältävät elementtejä, jotka pyrkivät myöntämään pääkäyttäjän oikeuksia ilman sinun suostumustasi. On erittäin suositeltavaa postaa ne välittömästi.</string>
   <string name="malicious_apps_uninstall">Asennuksen poistaminen</string>

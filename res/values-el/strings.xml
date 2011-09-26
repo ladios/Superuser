@@ -28,7 +28,6 @@
   <string name="deny">Άρνηση</string>
   <string name="set">Βάλε</string>
   <string name="remember">Θυμήσου</string>
-  <string name="request">%1$s as %2$s (uid: %3$d)</string>
   <string name="unknown">Άγνωστο όνομα</string>
   <string name="allowed">Επιτρέπεται</string>
   <string name="denied">Δεν επιτρέπεται</string>
@@ -102,6 +101,7 @@
   <string name="updater_fail">Απέτυχε!</string>
   <string name="updater_update_failed">Η ενημέρωση απέτυχε. Επανάληψη;</string>
   <string name="updater_try_again">Δοκιμάστε ξανά</string>
+  <string name="updater_su_updated">Το su binary ενημερώθηκε με επιτυχία</string>
   <string name="updater_step_download_manifest">Λήψη manifest...\u0020</string>
   <string name="updater_step_parse_manifest">Ανάλυση manifest... \ u0020</string>
   <string name="updater_step_latest_version">Τελευταία έκδοση = \u0020</string>

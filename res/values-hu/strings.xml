@@ -164,7 +164,7 @@
   <string name="pin_enter_secret_code">Add meg a titkos kódot</string>
   <string name="nfc_write_tag">Írandó címke beolvasása</string>
   <string name="malicious_apps_title">Figyelem</string>
-  <string name="malicious_apps_message2">Apps are market as malicious because they contain elements that indicate they are attempting to grant root access, possibly without your consent. It is highly recommended you uninstall them immediately.</string>
+  <string name="malicious_apps_message2">Az alkalmazások rosszindulatúnak lettek jelölve, mivel olyan elemeket tartalmaznak, amelyek root jogot kérnek a beleegyezésed nélkül. Ajánlott az azonnali eltávolításuk!</string>
   <string name="malicious_apps_uninstall">Eltávolítás</string>
   <string name="malicious_apps_ignore">Figyelmen kívül hagyás</string>
   <string name="malicious_app_notification_ticker">Valószínűsíthetően rosszindulatú program érzékelve</string>
