@@ -18,7 +18,8 @@
     android:id="@+id/home_root"
     android:orientation="vertical"
     android:layout_width="fill_parent"
-    android:layout_height="fill_parent">
+    android:layout_height="fill_parent"
+    android:background="@android:color/white">
 
     <LinearLayout style="@style/TitleBar">
         <ImageButton style="@style/TitleBarAction"
@@ -44,7 +45,7 @@
 
     <ListView android:id="@android:id/list"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_below="@id/title_container"
         android:layout_above="@+id/button_bar"
         android:layout_alignParentLeft="true"

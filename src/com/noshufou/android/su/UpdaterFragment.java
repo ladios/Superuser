@@ -683,7 +683,6 @@ public class UpdaterFragment extends ListFragment implements OnClickListener {
                 if (is.ready()) break;
                 try {
                     Thread.sleep(5);
-                    Log.d(TAG, "Slept " + i);
                 } catch (InterruptedException e) {
                     Log.w(TAG, "Sleep timer interrupted", e);
                 }
